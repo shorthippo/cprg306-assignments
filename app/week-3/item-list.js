@@ -89,6 +89,4 @@ return (
     )
 
 }
-export default function ItemList() {
-    // ... (rest of the function remains the same)
-}
+export default ItemList;
