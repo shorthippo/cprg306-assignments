@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export default function NewItem() {
-  const [quantity, setQuantity] = useState("1");
+  const [quantity, setQuantity] = useState(1);
   const increment = () => {
     if (quantity <20) {
     setQuantity(quantity + 1);}
@@ -11,7 +11,6 @@ export default function NewItem() {
     if (quantity > 1) {
     setQuantity(quantity - 1);}
   }
-}
 return (
     <div>
     <p>{quantity}</p>
@@ -21,3 +20,4 @@ return (
     className="bg-blue-400 hover:bg-blue-600 disabled:bg-yellow-900 rounded m-4 p-4">+</button>
     </div>
 )
+}
