@@ -4,19 +4,12 @@ export default function Home() {
   return (
     <main>
       <h1>CPRG 306: Web Development 2 - Assignments</h1>
-      <div><Link href="/week-2">
-        Week 2 Assignment
-      </Link></div>
-      <div><Link href="/week-3">
-        Week 3 Assignment
-      </Link></div>
-      <p>Week4 Assignment</p>
-      <p>Week 5 Assignment</p>
-      <p>Week 6 Assignment</p>
-      <p>Week 7 Assignment</p>
-      <p>Week 8 Assignment</p>
-      <p>Week 9 Assignment</p>
-    
+      <div>
+        <Link href = "week-2"> Week 2 </Link>
+        <Link href = "week-3"> Week 3 </Link>
+        <Link href = "week-4"> Week 4 </Link>
+        <Link href = "week-5"> Week 5 </Link>
+      </div>
     </main>
   );
 }
