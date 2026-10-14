@@ -13,6 +13,8 @@ export default function Page() {
       className = "inline-block rounded-full border-2 border-emerald-700 bg-emerald-100 px-9 py-1 font-semibold text-emerald-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-100 hover:border-amber-600 hover:text-amber-900"> Week 4 </Link></div>
       <div><Link href = "week-5"
       className = "inline-block rounded-full border-2 border-emerald-700 bg-emerald-100 px-9 py-1 font-semibold text-emerald-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-100 hover:border-amber-600 hover:text-amber-900"> Week 5 </Link></div>
+      <div><Link href = "week-6"
+      className = "inline-block rounded-full border-2 border-emerald-700 bg-emerald-100 px-9 py-1 font-semibold text-emerald-900 shadow-sm transition hover:-translate-y-0.5 hover:bg-amber-100 hover:border-amber-600 hover:text-amber-900"> Week 6 </Link></div>
     </main>
   )
 }
