@@ -22,7 +22,6 @@ export default function Home() {
       <p>Week 7 Assignment</p>
       <p>Week 8 Assignment</p>
       <p>Week 9 Assignment</p>
-    
     </main>
   );
 }
