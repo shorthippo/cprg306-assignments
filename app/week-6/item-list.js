@@ -6,31 +6,96 @@ import items from "./items.json";
 
 export default function ItemList() {
   const [sortBy, setSortBy] = useState("name");
-  let itemsCopy = [...items];
 
-  if (sortBy === "name") {
-    itemsCopy.sort((a, b) => a.name.localeCompare(b.name));
-  } else if (sortBy === "category") {
-    itemsCopy.sort((a, b) => a.category.localeCompare(b.category));
-  }
+  const sortedItems = [...items].sort((a, b) => {
+    if (sortBy === "name") {
+      return a.name.localeCompare(b.name);
+    } else {
+      return a.category.localeCompare(b.category);
+    }
+  });
 
-return (
-    <main>
-      <section className="flex flex-row align-center justify-center gap-4 p-2">
+  const groupedItems = [...items]
+  .sort((a,b) => a.name.localeCompare(b.name))
+  .reduce((groups, item) => {
+    if (!groups [item.category]) {
+      groups[item.category] =[];
+    }
+    groups[item.category].push(item);
+    return groups;
+  }, {});
+
+  return (
+    <div>
+      <div className="mb-6 flex flex-wrap gap-3">
         <button
           onClick={() => setSortBy("name")}
-          className={`border-2 border-black p-4 rounded-sm ${sortBy === "name" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"}`}
-        >Sort By Name</button>
+          className={`text-pink-900 font-semibold px-4 py-2 rounded-lg shadow-sm ${
+            sortBy === "name"
+              ? "bg-pink-300"
+              : "bg-pink-200"
+          }`}
+        >
+          Sort by Name
+        </button>
+
         <button
           onClick={() => setSortBy("category")}
-          className={`border-2 border-black p-4 rounded-sm ${sortBy === "category" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"}`}
-        >Sort By Category</button>
-      </section>
-      <section className="flex flex-col align-center justify-center gap-4">
-        {itemsCopy.map((item) => (
-          <Item key={item.id} item={item} />
-        ))}
-      </section>
-    </main>
- )
+          className={`text-pink-900 font-semibold px-4 py-2 rounded-lg  shadow-sm ${
+            sortBy === "category"
+              ? "bg-pink-300"
+              : "bg-pink-200"
+          }`}
+        >
+          Sort by Category
+        </button>
+        <button
+          onClick={() => setSortBy("group")}
+          className={`text-pink-900 font-semibold px-4 py-2 rounded-lg shadow-sm ${
+            sortBy === "group"
+              ? "bg-pink-300"
+              : "bg-pink-200"
+          }`}
+        >
+          Sort by Group
+        </button>
+      </div>
+
+      {sortBy === "group" ? (
+  <div>
+    {Object.keys(groupedItems)
+      .sort()
+      .map((category) => (
+        <div key={category} className="mb-6">
+          <h2 className="text-2xl font-bold text-pink-800 mb-3 capitalize">
+            {category}
+          </h2>
+
+          <ul>
+            {groupedItems[category].map((item) => (
+              <Item
+                key={item.id}
+                name={item.name}
+                quantity={item.quantity}
+                category={item.category}
+              />
+            ))}
+          </ul>
+        </div>
+      ))}
+  </div>
+) : (
+  <ul>
+    {sortedItems.map((item) => (
+      <Item
+        key={item.id}
+        name={item.name}
+        quantity={item.quantity}
+        category={item.category}
+      />
+    ))}
+  </ul>
+)}
+    </div>
+  );
 }
