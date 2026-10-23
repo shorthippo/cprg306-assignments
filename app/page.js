@@ -5,7 +5,7 @@ export default function Page() {
 
   return (
     <main className = "min-h-screen bg-emerald-100 flex flex-col items-center p-8">
-      <h1 className = "text-4xl font-bold text-emerald-800 mb-8">CPRG 306: Web Development 2 - Assignments</h1>
+      <h1 className = "text-4xl font-bold text-emerald-800 mb-8 text-center">CPRG 306: Web Development 2 - Assignments</h1>
       <ul className = "flex flex-col gap-2">
         {weeks.map((week) => (
           <li key = {week}>

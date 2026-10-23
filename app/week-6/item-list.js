@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import Item from "./item"
 
-import itemData from "./item.json";
+import itemData from "./item.json"
 
 export default function ItemList() {
   const [sortBy, setSortBy] = useState("name");
@@ -27,14 +27,15 @@ export default function ItemList() {
             sortBy === "name" ? "bg-[#a8d5b5] text-[#2f5a3d]" : "bg-[#5b8c6b] text-white hover:bg-[#487558]"
         }`}
         onClick = {() => setSortBy("name") }>Sort by Name</button>
+
         <button 
         className={`px-4 py-2 rounded-full font-bold transition-colors ${
             sortBy === "category" ? "bg-[#a8d5b5] text-[#2f5a3d]" : "bg-[#5b8c6b] text-white hover:bg-[#487558]"
         }`}
         onClick = {() => setSortBy ("category")}>Sort by Category</button>
-    </div>
+        </div>
 
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col gap-2 items-center justify-center">
          {itemListCopy.map((item) => (
             <Item key = {item.id}
              item = {item}
