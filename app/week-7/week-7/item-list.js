@@ -17,7 +17,7 @@ export default function ItemList({ items }) {
   });
 
   return (
-    <div className="max-w-2xl">
+    <div className="w-full max-w-lg">
       <h2 className="mb-4 text-2xl font-bold text-pink-600">
         Shopping Items
       </h2>
