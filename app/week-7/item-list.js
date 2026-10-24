@@ -4,6 +4,13 @@ import { useState } from "react";
 
 export default function ItemList({items}) {
 const [sortBy, setSortBy] = useState("name");
+const groupedItems = items.reduce((category, item) => {
+    if (!category[item.category]) {
+        category[item.category] = [];
+    }
+    category[item.category].push(item);
+    return category;
+}, {});
 const sortedItems = [...items].sort((a, b) => {
     if (sortBy === "name") {
         return a.name.localeCompare(b.name);
@@ -18,29 +25,50 @@ const sortedItems = [...items].sort((a, b) => {
     return 0;
   });
   return (
-  <div>
-    <button onClick={() => setSortBy("name")}
-    className= {sortBy === "name" ? "bg-blue-500 text-white" : "bg-gray-200 text-black" }>
-    Sort by Name</button>
-    <button onClick={() => setSortBy("category")} className={sortBy === "category" ? "bg-blue-950 text-white" : "bg-gray-200 text-black"}>
-    Sort by Category</button>
-    <button onClick={() => setSortBy("category list")} className={sortBy === "category list" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}>
-    Sort by Category List</button>
+    <div>
+        <button onClick={() => setSortBy("name")} className={sortBy === "name" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}>
+            Sort by Name
+        </button>
+        <button onClick={() => setSortBy("category")} className={sortBy === "category" ? "bg-blue-950 text-white" : "bg-gray-200 text-black"}>
+            Sort by Category
+        </button>
+        <button onClick={() => setSortBy("category list")} className={sortBy === "category list" ? "bg-blue-500 text-white" : "bg-gray-200 text-black"}>
+            Sort by Category List
+        </button>
 
-    {sortedItems.map((item) => (
-        <Item key={item.id} name={item.name} quantity={item.quantity} category={item.category} />
-    ))}
-    {Object.keys(sortedItems).sort((a, b) => a.localeCompare(b)).map((category) => (
-      <div key={category}>
-        <h1 className="capitalize">{category}</h1>
-        <ul>
-          {sortedItems.filter((item) => item.category === category).map((item) => (
-            <Item key={item.id} name={item.name} quantity={item.quantity} category={item.category} />
-          ))}
-        </ul>
-      </div>
-    ))}
+        {sortBy !== "category list" && (
+            <div>
+                {sortedItems.map((item) => (
+                    <Item
+                        key={item.id}
+                        name={item.name}
+                        quantity={item.quantity}
+                        category={item.category}
+                    />
+                ))}
+            </div>
+        )}
 
-  </div>
-  );
+        {sortBy === "category list" && (
+            <div>
+                {Object.keys(groupedItems).sort((a, b) => a.localeCompare(b)).map((category) => (
+                  <div key={category}>
+                    <h1 className="capitalize">{category}</h1>
+                    <ul>
+                        {[...groupedItems[category]].sort((a, b) => a.name.localeCompare(b.name)).map((item) => (
+                            <Item
+                              key={item.id}
+                              name={item.name}
+                              quantity={item.quantity}
+                              category={item.category}
+                            />
+                        ))}
+                    </ul>
+                  </div>
+              ))}
+            </div>
+        )}
+    </div>
+ );
+
 }
