@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default function Page() {
-  const weeks = [2, 3, 4, 5, 6, 7]
+  const weeks = [2, 3, 4, 5, 6, 7, 8]
 
   return (
     <main className = "min-h-screen bg-emerald-100 flex flex-col items-center p-8">
