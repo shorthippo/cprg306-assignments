@@ -1,6 +1,6 @@
-function Item ({name, quantity, category}) {
+function Item ({name, quantity, category, onSelect}) {
     return (
-    <li className="bg-fuchsia-600 border-b-fuchsia-950 rounded-lg"> 
+    <li onClick={onSelect} className="bg-fuchsia-600 border-b-fuchsia-950 rounded-lg"> 
         <div className="font-bold">{name}</div>
         <div className="text-gray-600">{quantity}</div>
         <div className="text-gray-600">{category}</div>

@@ -2,7 +2,7 @@
 import Item from "./item";
 import { useState } from "react";
 
-export default function ItemList({items}) {
+export default function ItemList({items, onItemSelect}) {
 const [sortBy, setSortBy] = useState("name");
 const groupedItems = items.reduce((category, item) => {
     if (!category[item.category]) {
@@ -44,6 +44,7 @@ const sortedItems = [...items].sort((a, b) => {
                         name={item.name}
                         quantity={item.quantity}
                         category={item.category}
+                        onSelect={() => onItemSelect(item)}
                     />
                 ))}
             </div>
@@ -61,6 +62,7 @@ const sortedItems = [...items].sort((a, b) => {
                               name={item.name}
                               quantity={item.quantity}
                               category={item.category}
+                              onSelect={() => onItemSelect(item)}
                             />
                         ))}
                     </ul>
